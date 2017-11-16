@@ -5,10 +5,11 @@ from nltk.corpus import stopwords
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
 
 stoplist = set(stopwords.words('english'))
+fpath = os.path.join("/home/prachi.sharma92/Project/abstract1.txt")
+with open(fpath, "r") as script:
+	filelines =script.readlines()
 
-documents = ["Apple is releasing a new product", 
-             "Amazon sells many things",
-             "Microsoft announces Nokia acquisition"]  
+documents = filelines  
 
 texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
 dictionary = corpora.Dictionary(texts)
