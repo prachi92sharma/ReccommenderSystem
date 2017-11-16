@@ -24,12 +24,12 @@ for line in open(fpath):
 		continue
 	#print(line)
 	words = re.findall(re.compile('\w+'), line.lower().strip())
-	wlist = [w for w in words if not w in stopwords1]
+	wlist = [w for w in words if not w in stopwords1 if len(w)>2]
 	for word in wlist:
 		word_dict[word] += 1  
 	#print(wlist)
 	fp.write(' '.join(wlist)+ '\n')
 fp.close()
-print (stopwords1)
+#print (stopwords1)
 print (len(word_dict))
 np.save("vocab",word_dict)

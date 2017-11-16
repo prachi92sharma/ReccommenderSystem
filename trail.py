@@ -10,7 +10,7 @@ import numpy as np
 logging.basicConfig()
 
 n_samples = 453
-n_features = 1000
+n_features = 10000
 n_components = 5
 n_top_words =10
 
