@@ -11,7 +11,6 @@ import collections
 import numpy as np
 from collections import defaultdict
 from nltk.corpus import stopwords
-import h5py
 
 #orig_stdout = sys.stdout
 #f = open('out.txt', 'w')
