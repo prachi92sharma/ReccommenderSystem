@@ -1,5 +1,6 @@
 import gensim
 import logging
+import os
 from gensim import corpora, models, similarities
 from nltk.corpus import stopwords
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
@@ -14,5 +15,6 @@ documents = filelines
 texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
 dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
-
-lda = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=5, update_every=1, chunksize=10000, passes=1)
+#lda = LdaModel(corpus, num_topics=10)
+lda = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=10, alpha=0.1, eta = 0.1,update_every=1, chunksize=100, passes=1)
+lda.print_topics(10)
