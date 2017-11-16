@@ -11,23 +11,28 @@ import collections
 import numpy as np
 from collections import defaultdict
 from nltk.corpus import stopwords
+from nltk.stem.snowball import SnowballStemmer
 
+months = ["january","february", "march","april","may","june","july","august","september","october","november","december"]
+wordnumbers = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"]
+stemmer = SnowballStemmer("english")
 #orig_stdout = sys.stdout
 #f = open('out.txt', 'w')
 #sys.stdout = f
 word_dict = defaultdict(int)
-stopwords1 = set(stopwords.words('english'))
+stopwords_list = set(stopwords.words('english'))
 fp = open('preprocessed.txt','w')
-fpath = os.path.join("/home/prachi.sharma92/Project/abstract1.txt")
-for line in open(fpath):
+fpath = os.path.join("abstract1.txt")
+for line in open("abstract1.txt"):
 	if line == '\n':
 		continue
-	#print(line)
 	words = re.findall(re.compile('\w+'), line.lower().strip())
-	wlist = [w for w in words if not w in stopwords1]
+	wlist = [w for w in words if w not in stopwords_list if len(w) > 2]
+	wlist = [w for w in wlist if w not in months ]
+	wlist = [w for w in wlist if w not in wordnumbers ]
+	wlist = [stemmer.stem(w) for w in wlist]
 	for word in wlist:
 		word_dict[word] += 1  
-	print(wlist)
 	fp.write(' '.join(wlist)+ '\n')
 fp.close()
 print (len(word_dict))
