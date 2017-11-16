@@ -28,8 +28,9 @@ for line in open(fpath):
 	wlist = [w for w in words if not w in stopwords1]
 	for word in wlist:
 		word_dict[word] += 1  
-	print(wlist)
+	#print(wlist)
 	fp.write(' '.join(wlist)+ '\n')
 fp.close()
+print (stopwords1)
 print (len(word_dict))
 np.save("vocab",word_dict)
