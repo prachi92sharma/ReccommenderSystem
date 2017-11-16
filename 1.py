@@ -33,10 +33,6 @@ for line in open("abstract1.txt"):
 	wlist = [stemmer.stem(w) for w in wlist]
 	for word in wlist:
 		word_dict[word] += 1  
-	wlist = [w for w in words if not w in stopwords1 if len(w)>2]
-	for word in wlist:
-		word_dict[word] += 1  
-	#print(wlist)
 	fp.write(' '.join(wlist)+ '\n')
 fp.close()
 #print (stopwords1)
