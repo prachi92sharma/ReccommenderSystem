@@ -956,28 +956,3 @@ of Bayesian non-parametric modeling algorithms for discrete data. Inference with
 chiru,Relating Romanized Comments to News Articles by Inferring Multi-glyphic Topical Correspondence Commenting is a popular facility provided by news sites. Analyzing such user-generated content has recently attracted research interest. However, in multilingual societies such as India, analyzing such user-generated content is hard due to several reasons: (1) There are more than 20 official languages but linguistic resources are available mainly for Hindi. It is observed that people frequently use romanized text as it is easy and quick using an English keyboard, resulting in multiglyphic comments, where the texts are in the same language but in different scripts. Such romanized texts are almost unexplored in machine learning so far. (2) In many cases, comments are made on a specific part of the article rather than the topic of the entire article. Off-the-shelf methods such as correspondence LDA are insufficient to model such relationships between articles and comments. In this paper, we extend the notion of correspondence to model multi-lingual,multi-script, and inter-lingual topics in a unified probabilistic model called the Multi-glyphic Correspondence Topic Model (MCTM). Using several metrics, we verify our approach and show that it improves over the state-of-the-art.
 
 chiru,Weighted Theta Functions and Embeddings with Applications to Max-Cut, Clustering and Summarization We introduce a unifying generalization of the Lovasz theta function, and the as-sociated geometric embedding, for graphs with weights on both nodes and edges.We show how it can be computed exactly by semidefinite programming, and how to approximate it using SVM computations. We show how the theta function can be interpreted as a measure of diversity in graphs and use this idea, and the graph embedding in algorithms for Max-Cut, correlation clustering and document summarization, all of which are well represented as problems on weighted graphs
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
