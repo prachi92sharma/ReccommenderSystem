@@ -11,7 +11,7 @@ def scrape_abstract(id,f):
 	else:
 		abstract=soup.find("div",class_="abstractContainer").p.string
 	if title!=None and abstract!=None:
-		f.write(title.strip("\n")+","+abstract.strip("\n")+"\n")
+		f.write(title.encode("utf8").strip("\n")+","+abstract.encode("utf8").strip("\n")+"\n")
 
 def scrape_nips(url,f):
 	home=urllib2.urlopen(url)
@@ -21,8 +21,8 @@ def scrape_nips(url,f):
 	for t in table:
 		scrape_abstract(t.get("id").split("_")[1],f)
 
-f=open("abstract.txt","w")
-years=["2015","2016","2017"]
+f=open("abstract.txt","a")
+years=["2012","2013"]
 for y in years:
 	print y+" Starting"
 	scrape_nips("https://nips.cc/Conferences/"+y+"/Schedule?type=Poster",f)
