@@ -48,5 +48,9 @@ for f in files:
 	if f:
 		fi.append(f)
 
+fp=open("output.txt","a")
 for t in x:
+	fp.write(fi[t])
 	print t,fi[t]
+fp.close()
+
