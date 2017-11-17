@@ -16,8 +16,8 @@ for f in files:
 	if f:
 		fi.append(f.strip("\n"))
 
-train=fi[0:-9]
-test=fi[-9:]
+train=fi[0:-15]
+test=fi[-15:]
 testlist=[]
 for t in test:
 	x=[]
@@ -40,4 +40,13 @@ for t in train:
 	cos_array.append(cosine_similarity(x,avg_vector))
 cos_array=np.array(cos_array)
 
-print cos_array.argsort()[::-1][:20]
+x=cos_array.argsort()[::-1][:20]
+
+files=open("preprocessed.txt","r")
+fi=[]
+for f in files:
+	if f:
+		fi.append(f)
+
+for t in x:
+	print t,fi[t]
