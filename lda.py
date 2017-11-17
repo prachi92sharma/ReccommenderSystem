@@ -15,7 +15,7 @@ documents = filelines
 texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
 dictionary = corpora.Dictionary(texts)
 corpus = [dictionary.doc2bow(text) for text in texts]
-lda = models.ldamodel.LdaModel(corpus, num_topics=10)
+#lda = models.ldamodel.LdaModel(corpus, num_topics=10)
 lda = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=10, alpha=0.01, eta = 0.01,update_every=1, chunksize=100, passes=1000)
 lda.save("model")
 #print lda.print_topics(10)
