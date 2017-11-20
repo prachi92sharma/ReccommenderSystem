@@ -29,6 +29,7 @@ i=0
 fp=open("processed_features.txt","w")
 for d in documents:
 	bow = dictionary.doc2bow(d.split())
+	#print bow
 	x=""
 	x=x+str(i)
 	for l in lda.get_document_topics(bow, minimum_probability=0, minimum_phi_value=None, per_word_topics=False):
@@ -38,9 +39,9 @@ for d in documents:
 fp.close()
 
 print lda.print_topics(20)
-#docTopicProbMat = lda[corpus]
-#for topic in docTopicProbMat:
-#      print(topic)
+docTopicProbMat = lda[corpus]
+for topic in docTopicProbMat:
+      print(topic)
 
 
 #topicWordProbMat = lda.print_topics(20)
