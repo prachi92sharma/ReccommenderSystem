@@ -35,16 +35,60 @@ for line in open("dukki.txt"):
 	fp.write(' '.join(wlist)+ '\n')
 fp.close()
 print (len(word_dict))
-#np.save("vocab",word_dict)
+
+
+
+
+
+
+lda=models.ldamodel.LdaModel.load('lda.model')
+dictionary = corpora.Dictionary.load('dictionary.dict')
+
+
+
+
+
+
 
 fpath = os.path.join('query.txt')
 with open(fpath, "r") as script:
 	filelines =script.readlines()
-
 documents = filelines
 texts = [[word for word in document.lower().split()] for document in documents]
-dictionary = corpora.Dictionary(texts) 
-lda=models.ldamodel.LdaModel.load('lda.model')
+#print texts
+ques_vec = []
+for lis in texts:
+	ques_vec = dictionary.doc2bow(lis)
+	#ques_vec.append(x)
+print ques_vec
+topic_vec = []
+topic_vec = lda[ques_vec]
+print topic_vec
+word_count_array = numpy.empty((len(topic_vec), 2), dtype = numpy.object)
+for i in range(len(topic_vec)):
+	word_count_array[i, 0] = topic_vec[i][0]
+	word_count_array[i, 1] = topic_vec[i][1]
+
+idx = numpy.argsort(word_count_array[:, 1])
+idx = idx[::-1]
+word_count_array = word_count_array[idx]
+
+final = []
+final = lda.print_topic(word_count_array[0, 0], 1)
+
+question_topic = final.split('*') ## as format is like "probability * topic"
+
+print question_topic[1]
+
+
+
+
+
+
+
+
+"""
+
 i=0
 fp=open("processed_query.txt","w")
 for d in documents:
@@ -56,7 +100,7 @@ for d in documents:
 	i=i+1
 	fp.write(x+"\n")
 fp.close()
-
+"""
 def cosine_similarity(x,y):
 	s=0
 	for i in range(len(x)):
@@ -64,18 +108,18 @@ def cosine_similarity(x,y):
 	return s
 
 files1 = open("processed_features.txt","r")
-files2 = open("processed_query.txt","r")
+#files2 = open("processed_query.txt","r")
 fi1=[]
-fi2=[]
+#fi2=[]
 for f in files1:
 	if f:
 		fi1.append(f.strip("\n"))
-for f in files2:
-	if f:
-		fi2.append(f.strip("\n"))
+#for f in files2:
+#	if f:
+#		fi2.append(f.strip("\n"))
 
 train=fi1[0:]
-test=fi2[0:]
+test=question_topic[0]
 testlist=[]
 for t in test:
 	x=[]
@@ -115,4 +159,5 @@ for t in x:
 	#fp.write(fi[t])
 	print t,fi[t]
 #fp.close()
+
 
