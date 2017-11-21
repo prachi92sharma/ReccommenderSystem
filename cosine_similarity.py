@@ -16,8 +16,8 @@ for f in files:
 	if f:
 		fi.append(f.strip("\n"))
 
-train=fi[0:-15]
-test=fi[-15:]
+train=fi[0:-16]
+test=fi[-16:]
 testlist=[]
 for t in test:
 	x=[]

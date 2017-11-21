@@ -43,6 +43,8 @@ cor = [dictionary.doc2bow(text) for text in tex]
 T1= [0]*len(dictionary.keys())
 for c in cor[0]:
 	T1[c[0]]=(c[1]*1.0)/len(dic.keys())
+print cor
+
 T1=np.array(T1)
 T1=T1.reshape(1,-1)
 AT=np.transpose(A)
