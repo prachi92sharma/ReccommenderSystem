@@ -71,7 +71,9 @@ class LDAModel(object):
 			self.nmk[0][u]=self.nmk[0][u]+1
 		self.prev_topics=[-1]*len(self.nkt[0])
 		prev_document_topic=-1
-		for z in range(10000):
+
+
+		for z in range(100):
 			for word in doc_words:
 				cumulative_prob=self.cumulative_probablity(word)			
 				u=random.uniform(0,1)
