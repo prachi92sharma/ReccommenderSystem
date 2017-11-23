@@ -18,9 +18,8 @@ documents = filelines
 np.random.seed(42)
 texts = [[word for word in document.lower().split() if word not in stoplist] for document in documents]
 dictionary = corpora.Dictionary(texts)
-
+dictionary.save('dictionary.dict')
 corpus = [dictionary.doc2bow(text) for text in texts]
-#lda = models.ldamodel.LdaModel(corpus, num_topics=10)
 lda = gensim.models.ldamodel.LdaModel(corpus=corpus, id2word=dictionary, num_topics=num_topics, alpha=alpha, eta = eta,update_every=1, chunksize=100, passes=10, iterations=1000)
 lda.save('lda.model')
 #print lda.print_topics(10)
@@ -38,10 +37,11 @@ for d in documents:
 	fp.write(x+"\n")
 fp.close()
 
-print lda.print_topics(20)
-docTopicProbMat = lda[corpus]
-for topic in docTopicProbMat:
-      print(topic)
+
+#print lda.print_topics(20)
+#docTopicProbMat = lda[corpus]
+#for topic in docTopicProbMat:
+#      print(topic)
 
 
 #topicWordProbMat = lda.print_topics(20)
