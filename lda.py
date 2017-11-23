@@ -37,10 +37,11 @@ for d in documents:
 	fp.write(x+"\n")
 fp.close()
 
-print lda.print_topics(20)
-docTopicProbMat = lda[corpus]
-for topic in docTopicProbMat:
-      print(topic)
+
+#print lda.print_topics(20)
+#docTopicProbMat = lda[corpus]
+#for topic in docTopicProbMat:
+#      print(topic)
 
 
 #topicWordProbMat = lda.print_topics(20)
